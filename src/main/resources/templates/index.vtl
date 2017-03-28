@@ -1,0 +1,32 @@
+<!--index.vtl-->
+<h2>All things Doctor!</h2>
+
+<ul>
+  #foreach($doctor in $doctors)
+    <li>$doctor.getName()</li>
+  #end
+</ul>
+<!-- #foreach ($specialty in $specialties)
+  <p>$specialty.getId()</p>
+  <p>$specialty.getName()</p>
+#end -->
+
+<h2>New Doctor</h2>
+<form action="/doctors" method="post">
+  <label for="specialty-id">Select a Specialty</label>
+  <select id='specialty-id' name='specialty-id' type='text'>
+    #foreach($specialty in $specialties)
+      <option value="$specialty.getId()">$specialty.getName()</option>
+    #end
+  </select>
+
+  <div class="form-group">
+    <label for="name">Enter Doctor Name</label>
+    <input type="text" name="name" id="name" class="form-control">
+  </div>
+
+  <button type="submit" class="btn btn-info">Add Doctor</button>
+</form>
+
+
+<!--index.vtl-->
