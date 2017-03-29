@@ -91,4 +91,12 @@ public class DoctorTest {
     Patient[] patients = new Patient[] { firstPatient, secondPatient };
     assertTrue(myDoctor.getPatients().containsAll(Arrays.asList(patients)));
   }
+
+  @Test
+public void update_updatesDoctorDescription_true() {
+  Doctor myDoctor = new Doctor("Sam", 1);
+  myDoctor.save();
+  myDoctor.update("Roger");
+  assertEquals("Roger", Doctor.find(myDoctor.getId()).getName());
+}
 }

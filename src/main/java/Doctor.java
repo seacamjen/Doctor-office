@@ -77,4 +77,14 @@ public class Doctor {
         .executeAndFetch(Patient.class);
     }
   }
+
+  public void update(String name) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE doctors SET name = :name WHERE id = :id;";
+      con.createQuery(sql)
+        .addParameter("name", name)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
 }

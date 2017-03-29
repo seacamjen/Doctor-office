@@ -3,7 +3,7 @@
 
 <ul>
   #foreach($doctor in $doctors)
-    <li>$doctor.getName()</li>
+    <li><a href="/doctors/$doctor.getId()">$doctor.getName()</a></li>
   #end
 </ul>
 <!-- #foreach ($specialty in $specialties)

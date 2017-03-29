@@ -29,5 +29,23 @@ public class App {
       response.redirect(url);
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+    get("/doctors/:doctor_id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Doctor doctor = Doctor.find(Integer.parseInt(request.params(":doctor_id")));
+      model.put("doctor", doctor);
+      model.put("template", "templates/update-docs.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/doctors/:doctor_id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      String name = request.queryParams("name");
+      Doctor doctor = Doctor.find(Integer.parseInt(request.params(":doctor_id")));
+      doctor.update(name);
+      String url = String.format("/");
+      response.redirect(url);
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
   }
 }
